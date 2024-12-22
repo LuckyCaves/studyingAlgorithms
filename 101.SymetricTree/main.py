@@ -12,16 +12,17 @@ class Solution:
         d.append(root.right)
 
         while d:
-
-            for i in range(len(d)):
+            for i in range(len(d) // 2):
                 curr1 = d.popleft()
                 curr2 = d.pop()
 
-                if not(curr1 and curr2):
+                if curr1 is None and curr2 is None:
+                    continue
+                elif curr1 is None or curr2 is None:
                     return False
-
-                if curr1.val != curr2.val:
+                elif curr1.val != curr2.val:
                     return False
+                
                 d.appendleft(curr1.left)
                 d.append(curr2.right)
                 d.appendleft(curr2.left)
